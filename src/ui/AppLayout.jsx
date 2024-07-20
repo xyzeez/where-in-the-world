@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 
+// Contexts
+import { ThemeProvider } from '../contexts/useTheme';
+
 // Components
 import GlobalStyles from './GlobalStyles';
 import Logo from './Logo';
@@ -28,7 +31,7 @@ const Header = styled.header`
 
 const AppLayout = () => {
   return (
-    <>
+    <ThemeProvider>
       <GlobalStyles />
       <AppContainer>
         <Header>
@@ -37,7 +40,7 @@ const AppLayout = () => {
         </Header>
         <Outlet />
       </AppContainer>
-    </>
+    </ThemeProvider>
   );
 };
 

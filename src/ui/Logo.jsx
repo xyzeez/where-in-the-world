@@ -4,7 +4,7 @@ const LogoContainer = styled.a`
   font-family: var(--nunito);
   font-size: 14px;
   font-weight: var(--bold);
-  color: var(--very-dark-blue);
+  color: var(--theme-text);
 `;
 
 const Logo = () => {

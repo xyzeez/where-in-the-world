@@ -19,6 +19,23 @@ const GlobalStyles = createGlobalStyle`
   /* shadows */
   --header-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  /* theme */
+  &,&.light-mode {
+    --theme-bg: var(--white);
+    --theme-element: var(--white);
+    --theme-text: var(--light-text);
+    --theme-icon-light: var(--white);
+    --theme-icon-dark: var(--very-dark-blue);
+  }
+
+  &, &.dark-mode {
+    --theme-bg: var(--very-dark-blue);
+    --theme-element: var(--dark-blue);
+    --theme-text: var(--white);
+    --theme-icon-light: var(--white);
+    --theme-icon-dark: var(--white);
+  }
 }
 
 /* Reset */
@@ -48,7 +65,11 @@ p, h1, h2, h3, h4, h5, h6 {
 /* Reset */
 
 body {
-    font-family: var(--nunito);
+  font-family: var(--nunito);
+  background-color: var(--theme-bg);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 `;
 

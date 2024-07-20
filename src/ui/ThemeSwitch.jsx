@@ -1,4 +1,8 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+// Contexts
+import { useTheme } from '../contexts/useTheme';
 
 const Label = styled.label`
   --icon-size: 16px;
@@ -18,12 +22,10 @@ const Label = styled.label`
 
     & > .lightSVG {
       opacity: 0.6;
-      fill: var(--very-dark-blue);
     }
 
     & > .darkSVG {
       opacity: 1;
-      fill: white;
     }
   }
 `;
@@ -39,7 +41,7 @@ const Toggle = styled.div`
   border-radius: 9999px;
   box-shadow: var(--shadow-sm);
   transition: all 0.3s;
-  border: 1px solid var(--very-dark-blue);
+  border: 1px solid var(--theme-text);
 
   &::after {
     content: '';
@@ -57,7 +59,7 @@ const Toggle = styled.div`
 
 const LightSVG = styled.svg`
   position: absolute;
-  fill: white;
+  fill: var(--theme-icon-light);
   opacity: 1;
   width: var(--icon-size);
   height: var(--icon-size);
@@ -66,7 +68,7 @@ const LightSVG = styled.svg`
 
 const DarkSVG = styled.svg`
   position: absolute;
-  fill: var(--very-dark-blue);
+  fill: var(--theme-icon-dark);
   opacity: 0.6;
   width: var(--icon-size);
   height: var(--icon-size);
@@ -74,9 +76,19 @@ const DarkSVG = styled.svg`
 `;
 
 const ThemeSwitch = () => {
+  const [checked, setChecked] = useState(false);
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    checked ? setTheme('dark') : setTheme('light');
+  }, [checked, setTheme]);
+
   return (
     <Label>
-      <Input type="checkbox" />
+      <Input
+        onChange={() => setChecked((checked) => !checked)}
+        type="checkbox"
+      />
       <Toggle className="toggle" />
       <LightSVG
         height="0"
