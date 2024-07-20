@@ -35,7 +35,7 @@ const Input = styled.input`
 const Toggle = styled.div`
   position: relative;
   width: 60px;
-  height: 30px;
+  height: 32px;
   border-radius: 9999px;
   box-shadow: var(--shadow-sm);
   transition: all 0.3s;
