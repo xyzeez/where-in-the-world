@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Reset } from 'styled-reset';
 import { Outlet } from 'react-router-dom';
 
 // Components
@@ -30,7 +29,6 @@ const Header = styled.header`
 const AppLayout = () => {
   return (
     <>
-      <Reset />
       <GlobalStyles />
       <AppContainer>
         <Header>
