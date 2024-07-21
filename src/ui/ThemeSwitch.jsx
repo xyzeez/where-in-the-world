@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // Contexts
-import { useTheme } from '../contexts/useTheme';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Label = styled.label`
   --icon-size: 16px;
@@ -53,7 +53,6 @@ const Toggle = styled.div`
     top: 3px;
     left: 3px;
     transition: all 0.3s;
-    box-shadow: var(--shadow-md);
   }
 `;
 
