@@ -16,9 +16,8 @@ const GlobalStyles = createGlobalStyle`
   --semi-bold: 600;
   --bold: 800;
 
-  /* shadows */
-  --header-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  /* border */
+  --element-round: 0.375rem;
 
   /* theme */
   &,&.light-mode {
@@ -27,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
     --theme-text: var(--light-text);
     --theme-icon-light: var(--white);
     --theme-icon-dark: var(--very-dark-blue);
+
+    /* shadows */
+  --header-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  --element-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   }
 
   &, &.dark-mode {
@@ -35,6 +38,10 @@ const GlobalStyles = createGlobalStyle`
     --theme-text: var(--white);
     --theme-icon-light: var(--white);
     --theme-icon-dark: var(--white);
+
+    /* shadows */
+  --header-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.06) 0px 2px 4px -1px;
+  --element-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(255, 255, 255, 0.25) 0px 0px 0px 1px;
   }
 }
 
@@ -56,13 +63,58 @@ img, picture, video, canvas, svg {
 input, button, textarea, select {
   font: inherit;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }
 #root, #__next {
   isolation: isolate;
 }
 /* Reset */
+
+/* sr-only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+/* sr-only */
 
 body {
   font-family: var(--nunito);
