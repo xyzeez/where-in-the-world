@@ -36,9 +36,10 @@ const ListItem = styled.li`
 
 const FilterBar = () => {
   const [openFilter, setOpenFilter] = useState(false);
-  const { regions } = useCountries();
+  const { regions, filterByRegion } = useCountries();
 
-  const handleSelectedOption = () => {
+  const handleRegionSelected = (region) => {
+    filterByRegion(region);
     setOpenFilter(false);
   };
 
@@ -60,9 +61,9 @@ const FilterBar = () => {
         </svg>
       </StyledButton>
       <List $show={openFilter}>
-        <ListItem onClick={handleSelectedOption}>none</ListItem>
+        <ListItem onClick={() => handleRegionSelected('')}>none</ListItem>
         {regions.map((region) => (
-          <ListItem key={region} onClick={handleSelectedOption}>
+          <ListItem key={region} onClick={() => handleRegionSelected(region)}>
             {region}
           </ListItem>
         ))}
