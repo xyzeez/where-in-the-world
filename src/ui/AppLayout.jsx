@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 
 // Contexts
-import { ThemeProvider } from '../contexts/useTheme';
+import { ThemeProvider } from '../contexts/ThemeContext';
+import { CountriesProvider } from '../contexts/CountriesContext';
 
 // Components
 import GlobalStyles from './GlobalStyles';
@@ -32,14 +33,16 @@ const Header = styled.header`
 const AppLayout = () => {
   return (
     <ThemeProvider>
-      <GlobalStyles />
-      <AppContainer>
-        <Header>
-          <Logo />
-          <ThemeSwitch />
-        </Header>
-        <Outlet />
-      </AppContainer>
+      <CountriesProvider>
+        <GlobalStyles />
+        <AppContainer>
+          <Header>
+            <Logo />
+            <ThemeSwitch />
+          </Header>
+          <Outlet />
+        </AppContainer>
+      </CountriesProvider>
     </ThemeProvider>
   );
 };
