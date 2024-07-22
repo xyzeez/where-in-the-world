@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useCountries } from '../contexts/CountriesContext';
 
 const Search = styled.label`
   flex: auto 1 0;
@@ -36,6 +37,8 @@ const Search = styled.label`
 `;
 
 const SearchBar = () => {
+  const { setSearchQuery } = useCountries();
+
   return (
     <Search>
       <span className="sr-only">Search for a country:</span>
@@ -56,6 +59,7 @@ const SearchBar = () => {
         name=""
         id=""
         placeholder="Search for a country..."
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
     </Search>
   );

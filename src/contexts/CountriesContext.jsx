@@ -3,13 +3,17 @@ import {
   getCountriesData,
   getFilteredCountries,
   getRegions,
+  getSearchedCountries,
 } from '../services/countriesApi';
+
+const CountriesContext = createContext(null);
 
 const initialData = {
   countries: [],
-  filteredCountries: null,
-  selectedCountry: {},
   regions: [],
+  selectedCountry: {},
+  filterBy: '',
+  searchQuery: '',
 };
 
 const reducer = (state, action) => {
@@ -20,28 +24,39 @@ const reducer = (state, action) => {
         countries: action.payload,
         regions: getRegions(action.payload),
       };
-    case 'countries/filtered':
-      return { ...state, filteredCountries: action.payload };
     case 'country/selected':
       return { ...state, selectedCountry: action.payload };
+    case 'filter/set':
+      return { ...state, filterBy: action.payload };
+    case 'query/set':
+      return { ...state, searchQuery: action.payload };
+    default:
+      return state;
   }
 };
 
-const CountriesContext = createContext(null);
-
 const CountriesProvider = ({ children }) => {
-  const [{ countries, filteredCountries, selectedCountry, regions }, dispatch] =
-    useReducer(reducer, initialData);
+  const [state, dispatch] = useReducer(reducer, initialData);
+  const { countries, regions, selectedCountry, filterBy, searchQuery } = state;
 
   const loadCountries = async () => {
-    dispatch({ type: 'countries/loaded', payload: await getCountriesData() });
+    const countriesData = await getCountriesData();
+    dispatch({ type: 'countries/loaded', payload: countriesData });
   };
 
-  const filterByRegion = (region) => {
-    dispatch({
-      type: 'countries/filtered',
-      payload: getFilteredCountries(countries, region),
-    });
+  const setRegionFilter = (region) => {
+    dispatch({ type: 'filter/set', payload: region });
+  };
+
+  const setSearchQuery = (query) => {
+    dispatch({ type: 'query/set', payload: query });
+  };
+
+  const getRenderData = () => {
+    const searched = searchQuery
+      ? getSearchedCountries(countries, searchQuery)
+      : countries;
+    return filterBy ? getFilteredCountries(searched, filterBy) : searched;
   };
 
   useEffect(() => {
@@ -52,10 +67,13 @@ const CountriesProvider = ({ children }) => {
     <CountriesContext.Provider
       value={{
         countries,
-        filteredCountries,
-        selectedCountry,
         regions,
-        filterByRegion,
+        filterBy,
+        searchQuery,
+        selectedCountry,
+        setRegionFilter,
+        setSearchQuery,
+        getRenderData,
       }}>
       {children}
     </CountriesContext.Provider>

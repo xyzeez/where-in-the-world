@@ -10,13 +10,13 @@ const Container = styled.ul`
 `;
 
 const CountriesList = () => {
-  const { countries, filteredCountries } = useCountries();
+  const { getRenderData } = useCountries();
 
-  const renderedList = filteredCountries || countries || [];
+  const renderData = getRenderData();
 
   return (
     <Container>
-      {renderedList.map((item) => (
+      {renderData.map((item) => (
         <CountryItem key={item.name} data={item} />
       ))}
     </Container>

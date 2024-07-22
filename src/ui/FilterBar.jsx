@@ -36,10 +36,10 @@ const ListItem = styled.li`
 
 const FilterBar = () => {
   const [openFilter, setOpenFilter] = useState(false);
-  const { regions, filterByRegion } = useCountries();
+  const { regions, setRegionFilter } = useCountries();
 
   const handleRegionSelected = (region) => {
-    filterByRegion(region);
+    setRegionFilter(region);
     setOpenFilter(false);
   };
 
