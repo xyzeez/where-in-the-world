@@ -11,7 +11,6 @@ const CountriesContext = createContext(null);
 const initialData = {
   countries: [],
   regions: [],
-  selectedCountry: {},
   filterBy: '',
   searchQuery: '',
 };
@@ -24,8 +23,6 @@ const reducer = (state, action) => {
         countries: action.payload,
         regions: getRegions(action.payload),
       };
-    case 'country/selected':
-      return { ...state, selectedCountry: action.payload };
     case 'filter/set':
       return { ...state, filterBy: action.payload };
     case 'query/set':
@@ -37,7 +34,7 @@ const reducer = (state, action) => {
 
 const CountriesProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialData);
-  const { countries, regions, selectedCountry, filterBy, searchQuery } = state;
+  const { countries, regions, filterBy, searchQuery } = state;
 
   const loadCountries = async () => {
     const countriesData = await getCountriesData();
@@ -70,7 +67,6 @@ const CountriesProvider = ({ children }) => {
         regions,
         filterBy,
         searchQuery,
-        selectedCountry,
         setRegionFilter,
         setSearchQuery,
         getRenderData,
