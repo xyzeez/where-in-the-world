@@ -13,6 +13,15 @@ const Button = styled.button`
   box-shadow: var(--element-shadow);
   background-color: var(--theme-element);
 
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &[aria-current='page'] {
+    border-color: var(--theme-element);
+    background-color: var(--button-active);
+  }
+
   & > svg {
     stroke: var(--theme-text);
     width: 20px;

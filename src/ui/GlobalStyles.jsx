@@ -26,6 +26,7 @@ const GlobalStyles = createGlobalStyle`
     --theme-text: var(--light-text);
     --theme-icon-light: var(--white);
     --theme-icon-dark: var(--very-dark-blue);
+    --button-active: hsl(220, 13%, 90%);
 
     /* shadows */
   --header-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -38,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
     --theme-text: var(--white);
     --theme-icon-light: var(--white);
     --theme-icon-dark: var(--white);
+    --button-active: transparent;
 
     /* shadows */
   --header-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.06) 0px 2px 4px -1px;
