@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.li`
@@ -5,6 +6,11 @@ const Container = styled.li`
   border-radius: var(--element-round);
   box-shadow: var(--element-shadow);
   background-color: var(--theme-element);
+`;
+
+const Wrapper = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 const Inner = styled.div`
@@ -45,19 +51,21 @@ const CountryItem = ({ data }) => {
   return (
     data && (
       <Container>
-        <Img src={flag} alt="" />
-        <Inner>
-          <Title>{name}</Title>
-          <Text>
-            <span>Population:</span> {population}
-          </Text>
-          <Text>
-            <span>Region:</span> {region}
-          </Text>
-          <Text>
-            <span>Capital:</span> {capital}
-          </Text>
-        </Inner>
+        <Wrapper to={`/countries/${name}`}>
+          <Img src={flag} alt="" />
+          <Inner>
+            <Title>{name}</Title>
+            <Text>
+              <span>Population:</span> {population?.toLocaleString('en-US')}
+            </Text>
+            <Text>
+              <span>Region:</span> {region}
+            </Text>
+            <Text>
+              <span>Capital:</span> {capital}
+            </Text>
+          </Inner>
+        </Wrapper>
       </Container>
     )
   );

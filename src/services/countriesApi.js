@@ -28,7 +28,7 @@ export const getFilteredCountries = (countries, region) => {
 
 export const getSearchedCountries = (countries, searchTerm) => {
   if (!searchTerm) {
-    return null; // Return null for empty search term (optional)
+    return null;
   }
 
   const lowercaseSearchTerm = searchTerm.toLowerCase();
@@ -36,4 +36,16 @@ export const getSearchedCountries = (countries, searchTerm) => {
     const lowercaseName = country.name.toLowerCase();
     return lowercaseName.startsWith(lowercaseSearchTerm);
   });
+};
+export const getCountryByName = (countries, name) => {
+  return countries.find(
+    (country) => country.name.toLowerCase() === name.toLowerCase()
+  );
+};
+
+export const getCurrencyCodes = (currencies) => {
+  return currencies.map((currency) => currency.code).join(', ');
+};
+export const getLanguageNames = (languages) => {
+  return languages.map((language) => language.name).join(', ');
 };
