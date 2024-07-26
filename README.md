@@ -33,11 +33,11 @@
         src="https://img.shields.io/badge/Status-Completed-2ECC40?style=for-the-badge"
         alt="Status Completed" />
     </a>
-    <!-- <a href="#">
+    <a href="#">
       <img
         src="https://img.shields.io/badge/Status-Debugging-FFFF00?style=for-the-badge"
         alt="Status Debugging" />
-    </a> -->
+    </a>
   </div>
 
   <br>
