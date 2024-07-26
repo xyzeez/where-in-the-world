@@ -9,6 +9,11 @@ export const getCountriesData = async () => {
 };
 
 export const getRegions = (countries) => {
+  if (!countries || !Array.isArray(countries)) {
+    console.warn('getRegions called with invalid data:', countries);
+    return [];
+  }
+
   const regionSet = new Set();
 
   countries.forEach((country) => {
