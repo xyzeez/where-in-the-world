@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       },
       {
         path: 'countries',
+        element: <Navigate replace to="home" />,
+      },
+      {
+        path: 'countries/:name',
         element: <Countries />,
       },
     ],
