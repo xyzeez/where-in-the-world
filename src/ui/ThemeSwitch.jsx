@@ -75,7 +75,9 @@ const DarkSVG = styled.svg`
 `;
 
 const ThemeSwitch = () => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  );
   const { setTheme } = useTheme();
 
   useEffect(() => {
@@ -85,6 +87,7 @@ const ThemeSwitch = () => {
   return (
     <Label>
       <Input
+        checked={checked}
         onChange={() => setChecked((checked) => !checked)}
         type="checkbox"
       />
