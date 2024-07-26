@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Container = styled.li`
-  flex: 300px 1 1;
   overflow: hidden;
   border-radius: var(--element-round);
   box-shadow: var(--element-shadow);

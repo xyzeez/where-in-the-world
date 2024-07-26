@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useCountries } from '../contexts/CountriesContext';
 
 const Search = styled.label`
-  flex: auto 1 0;
+  flex: 400px 0 1;
   display: flex;
   flex-direction: row;
   align-items: center;

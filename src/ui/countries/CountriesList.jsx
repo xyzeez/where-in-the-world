@@ -7,17 +7,36 @@ import Pagination from '../Pagination';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
+
+  @media (min-width: 1024px) {
+    gap: 2rem;
+    padding: 1.5rem 0 0;
+  }
 `;
 
 const List = styled.ul`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4rem;
+  }
 `;
 
-const ITEMS_PER_PAGE = 25;
+const ITEMS_PER_PAGE = 24;
 
 const CountriesList = () => {
   const { getRenderData } = useCountries();

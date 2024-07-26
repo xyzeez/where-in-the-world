@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 0.5rem;
 `;
 
 const Ellipsis = styled.span`

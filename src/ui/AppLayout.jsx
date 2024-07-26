@@ -18,16 +18,28 @@ const AppContainer = styled.div`
 
   & > main {
     padding: 1.5rem 1rem;
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+      padding: 3rem 1rem;
+    }
   }
 `;
 
 const Header = styled.header`
+  padding: 1.5rem 1rem;
+  box-shadow: var(--header-shadow);
+`;
+
+const HeaderInner = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 1rem;
-  box-shadow: var(--header-shadow);
+  max-width: 1170px;
+  margin: 0 auto;
 `;
 
 const AppLayout = () => {
@@ -37,8 +49,10 @@ const AppLayout = () => {
         <GlobalStyles />
         <AppContainer>
           <Header>
-            <Logo />
-            <ThemeSwitch />
+            <HeaderInner>
+              <Logo />
+              <ThemeSwitch />
+            </HeaderInner>
           </Header>
           <Outlet />
         </AppContainer>
