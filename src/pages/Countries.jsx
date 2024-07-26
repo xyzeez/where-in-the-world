@@ -18,7 +18,7 @@ const StyledButton = styled(Button)`
 
 const Countries = () => {
   const navigate = useNavigate();
-  const { countries } = useCountries();
+  const { isLoading, countries } = useCountries();
   const { name } = useParams();
   const data = getCountryByName(countries, name);
 
@@ -39,7 +39,7 @@ const Countries = () => {
         </svg>
         <span>Back</span>
       </StyledButton>
-      <Country data={data} />
+      {isLoading ? <div>LOADING...</div> : <Country data={data} />}
     </Container>
   );
 };

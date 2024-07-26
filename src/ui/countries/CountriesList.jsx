@@ -39,7 +39,7 @@ const List = styled.ul`
 const ITEMS_PER_PAGE = 24;
 
 const CountriesList = () => {
-  const { getRenderData } = useCountries();
+  const { isLoading, getRenderData } = useCountries();
   const [currentPage, setCurrentPage] = useState(1);
   const renderData = useMemo(() => getRenderData(), [getRenderData]);
 
@@ -59,18 +59,24 @@ const CountriesList = () => {
   };
 
   return (
-    <Container>
-      <List>
-        {currentPageData.map((item) => (
-          <CountryItem key={item.name} data={item} />
-        ))}
-      </List>
-      <Pagination
-        totalPages={totalPages}
-        currPage={currentPage}
-        onPageChange={handlePageChange}
-      />
-    </Container>
+    <>
+      {isLoading ? (
+        <div>LOADING...</div>
+      ) : (
+        <Container>
+          <List>
+            {currentPageData.map((item) => (
+              <CountryItem key={item.name} data={item} />
+            ))}
+          </List>
+          <Pagination
+            totalPages={totalPages}
+            currPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </Container>
+      )}
+    </>
   );
 };
 

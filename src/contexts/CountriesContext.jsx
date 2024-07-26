@@ -9,6 +9,7 @@ import {
 const CountriesContext = createContext(null);
 
 const initialData = {
+  isLoading: true,
   countries: [],
   regions: [],
   filterBy: '',
@@ -17,11 +18,16 @@ const initialData = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'load/data':
+      return { ...state, isLoading: true };
+    case 'data/loaded':
+      return { ...state, isLoading: false };
     case 'countries/loaded':
       return {
         ...state,
         countries: action.payload,
         regions: getRegions(action.payload),
+        isLoading: false,
       };
     case 'filter/set':
       return { ...state, filterBy: action.payload };
@@ -34,11 +40,16 @@ const reducer = (state, action) => {
 
 const CountriesProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialData);
-  const { countries, regions, filterBy, searchQuery } = state;
+  const { isLoading, countries, regions, filterBy, searchQuery } = state;
 
   const loadCountries = async () => {
-    const countriesData = await getCountriesData();
-    dispatch({ type: 'countries/loaded', payload: countriesData });
+    try {
+      dispatch({ type: 'load/data' });
+      const countriesData = await getCountriesData();
+      dispatch({ type: 'countries/loaded', payload: countriesData });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const setRegionFilter = (region) => {
@@ -50,10 +61,17 @@ const CountriesProvider = ({ children }) => {
   };
 
   const getRenderData = () => {
-    const searched = searchQuery
-      ? getSearchedCountries(countries, searchQuery)
-      : countries;
-    return filterBy ? getFilteredCountries(searched, filterBy) : searched;
+    try {
+      // dispatch({ type: 'load/data' });
+      const searched = searchQuery
+        ? getSearchedCountries(countries, searchQuery)
+        : countries;
+      return filterBy ? getFilteredCountries(searched, filterBy) : searched;
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // dispatch({ type: 'data/loaded' });
+    }
   };
 
   useEffect(() => {
@@ -63,6 +81,7 @@ const CountriesProvider = ({ children }) => {
   return (
     <CountriesContext.Provider
       value={{
+        isLoading,
         countries,
         regions,
         filterBy,

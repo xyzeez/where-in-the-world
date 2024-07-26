@@ -46,7 +46,7 @@ const Img = styled.img`
 `;
 
 const CountryItem = ({ data }) => {
-  const { name, flag, population, region, capital } = data || {};
+  const { name, flag, population, region, capital } = data;
 
   return (
     data && (
