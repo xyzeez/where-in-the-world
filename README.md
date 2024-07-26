@@ -13,11 +13,11 @@
   <!--  -->
   <p align="center">
     <br />
-    <a href="#">View Demo</a>
+    <a href="https://femc-whereintheworld.netlify.app">View Demo</a>
     ·
-    <a href="#" target="_blank">Report Bug</a>
+    <a href="https://github.com/xyzeez/where-in-the-world/issues" target="_blank">Report Bug</a>
     ·
-    <a href="#" target="_blank">Request Feature</a>
+    <a href="https://github.com/xyzeez/where-in-the-world/issues" target="_blank">Request Feature</a>
   </p>
   <!--  -->
   <div align="center">
@@ -30,14 +30,9 @@
     <!-- Status -->
     <a href="#">
       <img
-        src="https://img.shields.io/badge/Status-In Development-0074D9?style=for-the-badge"
-        alt="Status In Development" />
-    </a>
-    <!-- <a href="#">
-      <img
         src="https://img.shields.io/badge/Status-Completed-2ECC40?style=for-the-badge"
         alt="Status Completed" />
-    </a> -->
+    </a>
     <!-- <a href="#">
       <img
         src="https://img.shields.io/badge/Status-Debugging-FFFF00?style=for-the-badge"
@@ -60,7 +55,6 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -79,19 +73,14 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [URL here](https://www.frontendmentor.io/solutions/world-countries-with-color-theme-switcher-Bw8zADBQj3)
+- Live Site URL: [URL here](https://femc-whereintheworld.netlify.app)
 
 ## My process
 
 ### Built with
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) &nbsp;
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) &nbsp; ![Context-API](https://img.shields.io/badge/Context--Api-000000?style=for-the-badge&logo=react) &nbsp; ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 ## Author
 
