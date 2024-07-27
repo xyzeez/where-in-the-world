@@ -27,7 +27,6 @@ const reducer = (state, action) => {
         ...state,
         countries: action.payload,
         regions: getRegions(action.payload),
-        isLoading: false,
       };
     case 'filter/set':
       return { ...state, filterBy: action.payload };
@@ -49,6 +48,8 @@ const CountriesProvider = ({ children }) => {
       dispatch({ type: 'countries/loaded', payload: countriesData });
     } catch (error) {
       console.error(error);
+    } finally {
+      dispatch({ type: 'data/loaded' });
     }
   };
 
@@ -62,15 +63,12 @@ const CountriesProvider = ({ children }) => {
 
   const getRenderData = () => {
     try {
-      // dispatch({ type: 'load/data' });
       const searched = searchQuery
         ? getSearchedCountries(countries, searchQuery)
         : countries;
       return filterBy ? getFilteredCountries(searched, filterBy) : searched;
     } catch (error) {
       console.error(error);
-    } finally {
-      // dispatch({ type: 'data/loaded' });
     }
   };
 

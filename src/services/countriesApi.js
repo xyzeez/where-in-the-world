@@ -42,6 +42,7 @@ export const getSearchedCountries = (countries, searchTerm) => {
     return lowercaseName.startsWith(lowercaseSearchTerm);
   });
 };
+
 export const getCountryByName = (countries, name) => {
   return countries.find(
     (country) => country.name.toLowerCase() === name.toLowerCase()
@@ -51,6 +52,7 @@ export const getCountryByName = (countries, name) => {
 export const getCurrencyCodes = (currencies) => {
   return currencies.map((currency) => currency.code).join(', ');
 };
+
 export const getLanguageNames = (languages) => {
   return languages.map((language) => language.name).join(', ');
 };

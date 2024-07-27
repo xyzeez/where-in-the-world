@@ -43,13 +43,13 @@ const CountriesList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const renderData = getRenderData();
-  const totalItems = renderData?.length;
+  const totalItems = renderData.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
 
   const currentPageData = useMemo(() => {
     const startIndex = ITEMS_PER_PAGE * (currentPage - 1);
     const endIndex = Math.min(ITEMS_PER_PAGE * currentPage, totalItems);
-    return renderData?.slice(startIndex, endIndex);
+    return renderData.slice(startIndex, endIndex);
   }, [renderData, currentPage, totalItems]);
 
   const handlePageChange = (newPage) => {
@@ -65,7 +65,7 @@ const CountriesList = () => {
       ) : (
         <Container>
           <List>
-            {currentPageData?.map((item) => (
+            {currentPageData.map((item) => (
               <CountryItem key={item.name} data={item} />
             ))}
           </List>
