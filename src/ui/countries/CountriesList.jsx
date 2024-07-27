@@ -49,7 +49,7 @@ const CountriesList = () => {
   const currentPageData = useMemo(() => {
     const startIndex = ITEMS_PER_PAGE * (currentPage - 1);
     const endIndex = Math.min(ITEMS_PER_PAGE * currentPage, totalItems);
-    return renderData.slice(startIndex, endIndex);
+    return renderData?.slice(startIndex, endIndex);
   }, [renderData, currentPage, totalItems]);
 
   const handlePageChange = (newPage) => {
