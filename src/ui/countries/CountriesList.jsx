@@ -42,8 +42,8 @@ const CountriesList = () => {
   const { isLoading, getRenderData } = useCountries();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const renderData = useMemo(() => getRenderData() || [], [getRenderData]);
-  const totalItems = renderData.length;
+  const renderData = getRenderData();
+  const totalItems = renderData?.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
 
   const currentPageData = useMemo(() => {
