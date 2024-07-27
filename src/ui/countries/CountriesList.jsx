@@ -1,7 +1,7 @@
+import { useState, useMemo, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCountries } from '../../contexts/CountriesContext';
 import CountryItem from './CountryItem';
-import { useState, useMemo } from 'react';
 import Pagination from '../Pagination';
 
 const Container = styled.div`
@@ -41,12 +41,18 @@ const ITEMS_PER_PAGE = 24;
 const CountriesList = () => {
   const { isLoading, getRenderData } = useCountries();
   const [currentPage, setCurrentPage] = useState(1);
-  const renderData = useMemo(() => getRenderData(), [getRenderData]);
+  const [renderData, setRenderData] = useState([]);
 
-  const totalItems = renderData.length;
+  useEffect(() => {
+    const data = getRenderData();
+    setRenderData(data || []);
+  }, [getRenderData]);
+
+  const totalItems = renderData?.length || 0;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
 
   const currentPageData = useMemo(() => {
+    if (!renderData || renderData.length === 0) return [];
     const startIndex = ITEMS_PER_PAGE * (currentPage - 1);
     const endIndex = Math.min(ITEMS_PER_PAGE * currentPage, totalItems);
     return renderData.slice(startIndex, endIndex);
@@ -58,25 +64,29 @@ const CountriesList = () => {
     }
   };
 
+  if (isLoading) {
+    return <div>LOADING...</div>;
+  }
+
+  if (!renderData || renderData.length === 0) {
+    return <div>No countries to display.</div>;
+  }
+
   return (
-    <>
-      {isLoading ? (
-        <div>LOADING...</div>
-      ) : (
-        <Container>
-          <List>
-            {currentPageData.map((item) => (
-              <CountryItem key={item.name} data={item} />
-            ))}
-          </List>
-          <Pagination
-            totalPages={totalPages}
-            currPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </Container>
+    <Container>
+      <List>
+        {currentPageData.map((item) => (
+          <CountryItem key={item.name} data={item} />
+        ))}
+      </List>
+      {totalPages > 1 && (
+        <Pagination
+          totalPages={totalPages}
+          currPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       )}
-    </>
+    </Container>
   );
 };
 
