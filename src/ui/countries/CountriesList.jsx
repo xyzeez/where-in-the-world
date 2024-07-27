@@ -65,7 +65,7 @@ const CountriesList = () => {
       ) : (
         <Container>
           <List>
-            {currentPageData.map((item) => (
+            {currentPageData?.map((item) => (
               <CountryItem key={item.name} data={item} />
             ))}
           </List>
